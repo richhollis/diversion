@@ -5,7 +5,7 @@ require 'mailtrack/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "mailtrack"
-  gem.version       = Mailtrack::VERSION
+  gem.version       = MailTrack::VERSION
   gem.authors       = ["Richard Hollis"]
   gem.email         = ["richhollis@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}
@@ -16,4 +16,11 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "simplecov"
+  gem.add_dependency "nokogiri"
+  gem.add_dependency "ruby-hmac"
+  gem.add_dependency "active_support"
 end
+
