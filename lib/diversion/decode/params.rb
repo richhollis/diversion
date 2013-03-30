@@ -1,8 +1,8 @@
-require 'mailtrack/helper'
+require 'diversion/helper'
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object' # to_param
 
-module MailTrack
+module Diversion
   module Decode
     module Params
       class << self
@@ -11,7 +11,7 @@ module MailTrack
           hash = HashWithIndifferentAccess.new.merge(CGI::parse(params))
 
           # validate expected parameters are present (d)
-          raise MailTrack::BadUrlDataFormat.new('Missing data parameter') unless hash.include?('d')
+          raise Diversion::BadUrlDataFormat.new('Missing data parameter') unless hash.include?('d')
 
           # d is holding the url and data attributes
           params = CGI::parse(CGI::unescape(hash["d"].first))
@@ -24,7 +24,7 @@ module MailTrack
           hash.delete(:d)
 
           # ensure url provided or raise
-          raise MailTrack::BadUrlDataFormat.new('Missing url parameter') if !params.include?('url') or params["url"].empty?
+          raise Diversion::BadUrlDataFormat.new('Missing url parameter') if !params.include?('url') or params["url"].empty?
           
           # s is holding the signature (if provided)
           hash[:key_presented] = ""

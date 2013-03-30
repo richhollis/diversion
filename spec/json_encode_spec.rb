@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe MailTrack::Encode::Json do
+describe Diversion::Encode::Json do
 
   include_context "json"
 

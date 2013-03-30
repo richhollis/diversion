@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe MailTrack::Client do
+describe Diversion::Client do
 
   it "delegates to a client" do
-    expect(MailTrack.encode(HTML)).to eq(html_json_encoded)
+    expect(Diversion.encode(HTML)).to eq(html_json_encoded)
   end
 
   it "configures" do
-    client = MailTrack::Client.new
+    client = Diversion::Client.new
     client.configure do |c|
       c.host = "dummy.host"
     end
@@ -15,8 +15,8 @@ describe MailTrack::Client do
   end
 
   it "allows for separate configs" do
-    m1 = MailTrack::Client.new({:host => "test1"})
-    m2 = MailTrack::Client.new({:host => "test2"})
+    m1 = Diversion::Client.new({:host => "test1"})
+    m2 = Diversion::Client.new({:host => "test2"})
     expect(m1.host).to_not eq(m2.host)
   end
 

@@ -1,7 +1,7 @@
-require 'mailtrack/decode/json'
-require 'mailtrack/decode/params'
+require 'diversion/decode/json'
+require 'diversion/decode/params'
 
-module MailTrack
+module Diversion
 
   class BadUrlDataFormat < StandardError; end
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe MailTrack::Encode::Params do
+describe Diversion::Encode::Params do
 
   include_context "params"
 

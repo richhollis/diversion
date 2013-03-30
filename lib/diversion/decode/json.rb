@@ -1,8 +1,8 @@
-require 'mailtrack/helper'
+require 'diversion/helper'
 require 'json'
 require 'active_support/core_ext/hash'
 
-module MailTrack
+module Diversion
   module Decode
     module Json
       class << self

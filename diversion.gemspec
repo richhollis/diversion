@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mailtrack/version'
+require 'diversion/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "mailtrack"
-  gem.version       = MailTrack::VERSION
+  gem.name          = "diversion"
+  gem.version       = Diversion::VERSION
   gem.authors       = ["Richard Hollis"]
   gem.email         = ["richhollis@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}
@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "simplecov"
+  
   gem.add_dependency "nokogiri"
   gem.add_dependency "ruby-hmac"
   gem.add_dependency "active_support"

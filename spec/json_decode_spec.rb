@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe MailTrack::Decode::Json do
+describe Diversion::Decode::Json do
 
   include_context "json"
 
@@ -13,7 +13,7 @@ describe MailTrack::Decode::Json do
   end
 
   it "raises when data format invalid" do
-    expect{client.decode("test-test-test")}.to raise_error(MailTrack::BadUrlDataFormat)
+    expect{client.decode("test-test-test")}.to raise_error(Diversion::BadUrlDataFormat)
   end
 
   it "doesn't parse when passed bad data" do

@@ -1,9 +1,9 @@
-require 'mailtrack/encode/json'
-require 'mailtrack/encode/params'
-require 'mailtrack/helper'
+require 'diversion/encode/json'
+require 'diversion/encode/params'
+require 'diversion/helper'
 require 'nokogiri'
 
-module MailTrack
+module Diversion
 
   class UriMissingError < StandardError; end
 

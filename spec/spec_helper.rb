@@ -4,7 +4,7 @@ SimpleCov.start do
   add_group 'Spec', 'spec'
 end
 
-require "mailtrack"
+require "diversion"
 require 'support/global_shared_context'
 
 SIGN_KEY = "abcdefghijklmnopqrstuvwzxy"

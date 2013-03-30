@@ -1,16 +1,16 @@
-require "mailtrack/client"
-require "mailtrack/version"
+require "diversion/client"
+require "diversion/version"
 
-module MailTrack
+module Diversion
 
   class << self
-    include MailTrack::Configurable
+    include Diversion::Configurable
 
-    # Delegate to a MailTrack::Client
+    # Delegate to a Diversion::Client
     #
-    # @return [MailTrack::Client]
+    # @return [Diversion::Client]
     def client
-      @client = MailTrack::Client.new(options) unless defined?(@client) && @client.hash == options.hash
+      @client = Diversion::Client.new(options) unless defined?(@client) && @client.hash == options.hash
       @client
     end
 
@@ -26,4 +26,4 @@ module MailTrack
   end
 end
 
-MailTrack.setup
+Diversion.setup

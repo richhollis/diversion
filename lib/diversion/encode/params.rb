@@ -1,4 +1,4 @@
-module MailTrack
+module Diversion
   module Encode
     module Params
       class << self

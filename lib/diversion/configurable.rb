@@ -1,4 +1,4 @@
-module MailTrack
+module Diversion
   module Configurable
     extend Forwardable
     attr_accessor :host, :port, :path, :sign_key, :sign_length, :encode_uris
@@ -43,7 +43,7 @@ module MailTrack
 
     # @return [Hash]
     def options
-      Hash[MailTrack::Configurable.keys.map{|key| [key, instance_variable_get(:"@#{key}")]}]
+      Hash[Diversion::Configurable.keys.map{|key| [key, instance_variable_get(:"@#{key}")]}]
     end
 
   end

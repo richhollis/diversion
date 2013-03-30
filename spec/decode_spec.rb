@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe MailTrack::Decode do
+describe Diversion::Decode do
 
   # we use json encoding here but it doesn't matter as we're testing common functionality
   include_context "json"

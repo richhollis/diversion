@@ -1,7 +1,7 @@
 require "base64"
 require 'hmac-md5'
 
-module MailTrack
+module Diversion
 
   class KeyMissingError < StandardError; end
   

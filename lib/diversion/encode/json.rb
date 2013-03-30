@@ -1,7 +1,7 @@
-require 'mailtrack/helper'
+require 'diversion/helper'
 require 'json'
 
-module MailTrack
+module Diversion
   module Encode
     module Json
       class << self
