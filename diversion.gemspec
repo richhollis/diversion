@@ -24,13 +24,13 @@ Gem::Specification.new do |gem|
   gem.licenses = ['MIT']
 
   gem.add_dependency "activesupport", ['>= 3.0', '< 4.1']
+  gem.add_dependency "nokogiri"
+  gem.add_dependency "ruby-hmac"
 
+  gem.add_development_dependency "actionmailer", ['>= 3.0', '< 4.1']
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "simplecov"
   gem.add_development_dependency "coveralls"
-  
-  gem.add_dependency "nokogiri"
-  gem.add_dependency "ruby-hmac"
   
 end
 

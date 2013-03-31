@@ -1,3 +1,8 @@
+if defined?(ActionMailer)
+  require 'action_mailer/version'
+  require 'diversion/mailer'
+end
+
 require "diversion/error"
 require "diversion/client"
 require "diversion/version"

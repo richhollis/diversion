@@ -9,6 +9,9 @@ SimpleCov.start do
   add_group 'Spec', 'spec'
 end
 
+require 'action_mailer'
+require 'mail'
+
 require "diversion"
 require 'diversion/support/global_shared_context'
 
