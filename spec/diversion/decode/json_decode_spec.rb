@@ -13,7 +13,7 @@ describe Diversion::Decode::Json do
   end
 
   it "raises when data format invalid" do
-    expect{client.decode("test-test-test")}.to raise_error(Diversion::BadUrlDataFormat)
+    expect{client.decode("test-test-test")}.to raise_error(Diversion::Error::BadUrlDataFormat)
   end
 
   it "doesn't parse when passed bad data" do

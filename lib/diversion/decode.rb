@@ -2,11 +2,11 @@ require 'diversion/decode/json'
 require 'diversion/decode/params'
 
 module Diversion
-
-  class BadUrlDataFormat < StandardError; end
-
   module Decode
-    include Helper
+    include Base64
+    include Signing
+
+    DECODERS = [ Params, Json ]
 
     def decode(data, opts = {})
       raise ArgumentError if data.length == 0
@@ -18,5 +18,4 @@ module Diversion
     end
 
   end
-
 end

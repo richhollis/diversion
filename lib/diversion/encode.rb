@@ -1,19 +1,19 @@
 require 'diversion/encode/json'
 require 'diversion/encode/params'
-require 'diversion/helper'
+require 'diversion/error/uri_missing_error'
 require 'nokogiri'
 
 module Diversion
-
-  class UriMissingError < StandardError; end
-
   module Encode
-    include Helper
+    include Base64
+    include Signing
     include Json
+
+    ENCODERS = [ Params, Json ]
 
     def encode(html, global_attrs = {}, opts = {})
       opts = options.merge(opts)
-      raise UriMissingError if opts[:encode_uris].count == 0
+      raise Error::UriMissingError if opts[:encode_uris].count == 0
       doc = Nokogiri::HTML.fragment(html)
       doc.search('a').each do |link|
         # ignore any non web uris
@@ -49,5 +49,4 @@ module Diversion
     end
 
   end
-
 end

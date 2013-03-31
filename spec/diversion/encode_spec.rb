@@ -19,12 +19,12 @@ describe Diversion::Encode do
 
   it "raises when signing key not set" do
     client_sign.sign_key = nil
-    expect { encode_json_html_signed }.to raise_error(Diversion::KeyMissingError)
+    expect { encode_json_html_signed }.to raise_error(Diversion::Error::KeyMissingError)
   end
 
   it "raises when no uris defined" do
     client.encode_uris = []
-    expect { encode_json_html_signed }.to raise_error(Diversion::UriMissingError)
+    expect { encode_json_html_signed }.to raise_error(Diversion::Error::UriMissingError)
   end
 
 end

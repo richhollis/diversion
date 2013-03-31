@@ -3,7 +3,7 @@ require "spec_helper"
 describe Diversion::Client do
 
   it "delegates to a client" do
-    expect(Diversion.encode(HTML)).to eq(html_json_encoded)
+    expect(Diversion.encode(HTML)).to eq(html_params_encoded)
   end
 
   it "configures" do

@@ -1,4 +1,6 @@
-require 'diversion/helper'
+require 'diversion/url'
+require 'diversion/signing'
+require 'diversion/error/bad_url_data_format'
 require 'json'
 require 'active_support/core_ext/hash'
 
@@ -8,10 +10,10 @@ module Diversion
       class << self
         def get_hash(data, options)
           arr = data.split('-')
-          raise BadUrlDataFormat unless arr.length.between?(1,2)
+          raise Error::BadUrlDataFormat unless arr.length.between?(1,2)
 
           # get json from data
-          json_raw = Helper::base64_decode_url(arr.first)
+          json_raw = Url::decode_url(arr.first)
 
           # parse the JSON and catch any error
           begin
@@ -29,7 +31,7 @@ module Diversion
           if arr.length == 2
             hash[:signed] = true
             hash[:key_presented] = arr[1]
-            hash[:key_expected] = Helper::sign_data(options[:sign_key], options[:sign_length], json_raw)
+            hash[:key_expected] = Signing::sign_data(options[:sign_key], options[:sign_length], json_raw)
             hash[:key_verified] = hash[:key_presented] == hash[:key_expected]
           else
             hash[:signed] = false

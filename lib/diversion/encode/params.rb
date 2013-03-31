@@ -4,7 +4,7 @@ module Diversion
       class << self
         def get_url(attrs, options)
           # if we are signing the url then generate the signature
-          sig = Helper::sign_data(options[:sign_key], options[:sign_length], attrs.to_param)
+          sig = Signing::sign_data(options[:sign_key], options[:sign_length], attrs.to_param)
           sig_param = ""
           unless sig.empty?
             sig_param = "&s=#{sig}"

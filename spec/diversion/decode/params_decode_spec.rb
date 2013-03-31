@@ -13,19 +13,19 @@ describe Diversion::Decode::Params do
   end
 
   it "raises when data format invalid" do
-   expect{client.decode("badparam=badvalue")}.to raise_error(Diversion::BadUrlDataFormat)
+   expect{client.decode("badparam=badvalue")}.to raise_error(Diversion::Error::BadUrlDataFormat)
   end
 
   it "raises when data format invalid" do
-   expect{client.decode("rubbish")}.to raise_error(Diversion::BadUrlDataFormat)
+   expect{client.decode("rubbish")}.to raise_error(Diversion::Error::BadUrlDataFormat)
   end
 
   it "raises when missing url data parameter" do
-    expect{client.decode("d=#{CGI::escape('badparam=badvalue')}")}.to raise_error(Diversion::BadUrlDataFormat)
+    expect{client.decode("d=#{CGI::escape('badparam=badvalue')}")}.to raise_error(Diversion::Error::BadUrlDataFormat)
   end
 
   it "raises when missing url data parameter empty" do
-    expect{client.decode("d=#{CGI::escape('url=')}")}.to raise_error(Diversion::BadUrlDataFormat)
+    expect{client.decode("d=#{CGI::escape('url=')}")}.to raise_error(Diversion::Error::BadUrlDataFormat)
   end
 
   it "returns expected values when passed good unsigned data" do

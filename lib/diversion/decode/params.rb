@@ -1,4 +1,5 @@
-require 'diversion/helper'
+require 'diversion/signing'
+require 'diversion/error/bad_url_data_format'
 require 'active_support/core_ext/hash'
 require 'active_support/core_ext/object' # to_param
 
@@ -11,7 +12,7 @@ module Diversion
           hash = HashWithIndifferentAccess.new.merge(CGI::parse(params))
 
           # validate expected parameters are present (d)
-          raise Diversion::BadUrlDataFormat.new('Missing data parameter') unless hash.include?('d')
+          raise Error::BadUrlDataFormat.new('Missing data parameter') unless hash.include?('d')
 
           # d is holding the url and data attributes
           params = CGI::parse(CGI::unescape(hash["d"].first))
@@ -24,7 +25,7 @@ module Diversion
           hash.delete(:d)
 
           # ensure url provided or raise
-          raise Diversion::BadUrlDataFormat.new('Missing url parameter') if !params.include?('url') or params["url"].empty?
+          raise Error::BadUrlDataFormat.new('Missing url parameter') if !params.include?('url') or params["url"].empty?
           
           # s is holding the signature (if provided)
           hash[:key_presented] = ""
@@ -38,7 +39,7 @@ module Diversion
           # if signed data then extract keys and verify, else do nothing but update hash
           unless hash[:key_presented].empty?
             hash[:signed] = true
-            hash[:key_expected] = Helper::sign_data(options[:sign_key], options[:sign_length], params_escaped)
+            hash[:key_expected] = Signing::sign_data(options[:sign_key], options[:sign_length], params_escaped)
             hash[:key_verified] = hash[:key_presented] == hash[:key_expected]
           else
             hash[:signed] = false

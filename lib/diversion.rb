@@ -1,3 +1,4 @@
+require "diversion/error"
 require "diversion/client"
 require "diversion/version"
 

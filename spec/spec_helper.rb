@@ -1,11 +1,16 @@
 require 'simplecov'
+require 'coveralls'
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
 SimpleCov.start do
   add_group 'Libraries', 'lib'
   add_group 'Spec', 'spec'
 end
 
 require "diversion"
-require 'support/global_shared_context'
+require 'diversion/support/global_shared_context'
 
 SIGN_KEY = "abcdefghijklmnopqrstuvwzxy"
 
@@ -29,8 +34,6 @@ PARAMS_KEY_BAD = KEY_BAD
 PARAMS_ENCODED = "d=#{CGI::escape(HTML_ATTRIBS.to_param)}"
 PARAMS_ENCODED_SIGNED = "#{PARAMS_ENCODED}&s=6b18e4b2864ab25c7fde6116eb942080"
 PARAMS_ENCODED_SIGNED_KEY_BAD = "#{PARAMS_ENCODED}&s=#{PARAMS_KEY_BAD}"
-
-
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

@@ -1,4 +1,5 @@
-require 'diversion/helper'
+require 'diversion/url'
+require 'diversion/signing'
 require 'json'
 
 module Diversion
@@ -10,10 +11,10 @@ module Diversion
           json_raw = attrs.to_json
 
           # build json (slightly lighter than ruby hash)
-          json = Helper::base64_encode_url(json_raw)
+          json = Url::encode_url(json_raw)
 
           # if we are signing the url then generate the signature
-          sig = Helper::sign_data(options[:sign_key], options[:sign_length], json_raw)
+          sig = Signing::sign_data(options[:sign_key], options[:sign_length], json_raw)
           sig = "-#{sig}" unless sig.empty?
 
           # get url and include port if needed
