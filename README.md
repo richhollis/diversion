@@ -1,6 +1,11 @@
-# Diversion
+# Diversion Ruby Gem
 
-TODO: Write a gem description
+[gem]: https://rubygems.org/gems/diversion
+[travis]: http://travis-ci.org/richhollis/diversion
+[gemnasium]: https://gemnasium.com/richhollis/diversion
+[coveralls]: https://coveralls.io/r/richhollis/diversion
+
+Redirect HTML links through your preferred redirection URL
 
 ## Installation
 
@@ -26,4 +31,5 @@ TODO: Write usage instructions here
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+5. Provide tests for the changes
+6. Create new Pull Request
