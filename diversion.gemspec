@@ -8,9 +8,12 @@ Gem::Specification.new do |gem|
   gem.version       = Diversion::Version
   gem.authors       = ["Richard Hollis"]
   gem.email         = ["richhollis@gmail.com"]
-  gem.description   = %q{Redirect HTML links to your preferred redirection URL}
+  gem.description   = %q{Redirect HTML links through your preferred redirection URL}
   gem.summary       = gem.description
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/richhollis/diversion/"
+
+  gem.cert_chain  = ['certs/richhollis.pem']
+  gem.signing_key = File.expand_path("~/.gem/private_key.pem") if $0 =~ /gem\z/
 
   gem.files = %w(LICENSE.txt README.md Rakefile diversion.gemspec)
   gem.files += Dir.glob("lib/**/*.rb")
