@@ -1,7 +1,7 @@
 require 'diversion/url'
 require 'diversion/signing'
 require 'diversion/error/bad_url_data_format'
-require 'json'
+require 'multi_json'
 require 'active_support/core_ext/hash'
 
 module Diversion
@@ -17,7 +17,7 @@ module Diversion
 
           # parse the JSON and catch any error
           begin
-          hash = JSON.parse(json_raw)
+          hash = MultiJson.load(json_raw)
           rescue 
             return {:parsed => false}
           end

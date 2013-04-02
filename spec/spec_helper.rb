@@ -4,9 +4,11 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
-SimpleCov.start do
-  add_group 'Libraries', 'lib'
-  add_group 'Spec', 'spec'
+if RUBY_VERSION >= '1.9'
+  SimpleCov.start do
+    add_group 'Libraries', 'lib'
+    add_group 'Spec', 'spec'
+  end
 end
 
 require 'action_mailer'
@@ -24,9 +26,10 @@ DEFAULT_SIGN_LEN = 32
 KEY_BAD = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 
 #json
-JSON_ENCODED = 'eyJ0ZXN0IjoiMTIzNCIsInVybCI6Imh0dHA6Ly90ZXN0LmNvbS90ZXN0In0,'
-JSON_HTML = "<a href=\"localhost.domain/redirect/1/#{JSON_ENCODED}\">test</a>"
-JSON_KEY = '9755dfdf3353860cc6a33867c21482e3'
+JSON_RAW = HTML_ATTRIBS.to_json
+JSON_ENCODED = Diversion::Url::encode_url(JSON_RAW)
+JSON_HTML = "<a href=\"http://localhost.domain/redirect/1/#{JSON_ENCODED}\">test</a>"
+JSON_KEY = HMAC::MD5.new(SIGN_KEY).update(JSON_RAW).hexdigest[0..DEFAULT_SIGN_LEN-1]
 JSON_KEY_BAD = KEY_BAD
 JSON_ENCODED_SIGNED = "#{JSON_ENCODED}-#{JSON_KEY}"
 JSON_ENCODED_SIGNED_KEY_BAD = "#{JSON_ENCODED}-#{JSON_KEY_BAD}"
@@ -63,8 +66,8 @@ def html_json_encoded(opts = {})
   unless opts[:sign_length] == 0
     key = "-#{JSON_KEY[0..opts[:sign_length]-1]}"
   end
-  return "<a href=\"localhost.domain/redirect/1/#{JSON_ENCODED}#{key}\">test</a>" if opts[:port] == 80
-  "<a href=\"localhost.domain:#{opts[:port]}/redirect/1/#{JSON_ENCODED}#{key}\">test</a>"
+  return "<a href=\"http://localhost.domain/redirect/1/#{JSON_ENCODED}#{key}\">test</a>" if opts[:port] == 80
+  "<a href=\"http://localhost.domain:#{opts[:port]}/redirect/1/#{JSON_ENCODED}#{key}\">test</a>"
 end
 
 def html_params_encoded(opts = {})
@@ -76,6 +79,6 @@ def html_params_encoded(opts = {})
     key = "#{PARAMS_KEY[0..opts[:sign_length]-1]}"
     path = path.gsub(PARAMS_KEY, key)
   end
-  return "<a href=\"localhost.domain/redirect/1/?#{path}\">test</a>" if opts[:port] == 80
-  "<a href=\"localhost.domain:#{opts[:port]}/redirect/1/?#{path}\">test</a>"
+  return "<a href=\"http://localhost.domain/redirect/1/?#{path}\">test</a>" if opts[:port] == 80
+  "<a href=\"http://localhost.domain:#{opts[:port]}/redirect/1/?#{path}\">test</a>"
 end

@@ -1,6 +1,6 @@
 require 'diversion/url'
 require 'diversion/signing'
-require 'json'
+require 'multi_json'
 
 module Diversion
   module Encode
@@ -23,6 +23,7 @@ module Diversion
           else
             url = "#{options[:host]}#{options[:path]}#{json}#{sig}"
           end
+          url
         end
       end
     end

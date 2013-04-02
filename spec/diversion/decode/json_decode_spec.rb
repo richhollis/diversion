@@ -53,7 +53,7 @@ describe Diversion::Decode::Json do
 
   it "decodes parameters as expected" do
     enc = client.encode(HTML, {:b => 999})
-    data = enc.scan(/".*?\/.*?\/.*?\/(.*?)"/).first.first
+    data = enc.scan(/".*?\/.*?\/.*?\/.*?\/.*?\/(.*?)"/).first.first
     result = client.decode(data)
     expect(result[:test]).to eq("1234")
     expect(result[:b]).to eq(999)
@@ -61,7 +61,7 @@ describe Diversion::Decode::Json do
 
   it "decodes parameters as expected when signed" do
     enc = client_sign.encode(HTML, {:b => 999})
-    data = enc.scan(/".*?\/.*?\/.*?\/(.*?)"/).first.first
+    data = enc.scan(/".*?\/.*?\/.*?\/.*?\/.*?\/(.*?)"/).first.first
     hash = client.decode(data)
     expect(hash[:test]).to eq("1234")
     expect(hash[:b]).to eq(999)

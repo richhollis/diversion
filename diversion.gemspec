@@ -29,10 +29,11 @@ Gem::Specification.new do |gem|
   gem.add_dependency "activesupport", ['>= 3.0', '< 4.1']
   gem.add_dependency "nokogiri"
   gem.add_dependency "ruby-hmac"
+  gem.add_dependency 'multi_json', '~> 1.0'
 
   gem.add_development_dependency "actionmailer", ['>= 3.0', '< 4.1']
   gem.add_development_dependency "rspec"
-  gem.add_development_dependency "simplecov"
+  gem.add_development_dependency "simplecov" if RUBY_VERSION >= '1.9'
   gem.add_development_dependency "coveralls"
   
 end

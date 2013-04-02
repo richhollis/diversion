@@ -6,8 +6,8 @@ describe Mail::Message do
   let(:text_only) { Mail::Message.new(fixture('sample_email.text').read).diversion }
 
   it "replaces html part" do
-    expect(multipart.html_part.body).to include('<a href="localhost.domain/redirect/1/?d=url%3Dhttp%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DFE_9CzLCbkY">Dream of the 90s</a>')
-    expect(multipart.html_part.body).to include('<a href="localhost.domain/redirect/1/?d=url%3Dhttp%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DOyQ6pqPFwTI">Customers only</a>')
+    expect(multipart.html_part.body).to include('<a href="http://localhost.domain/redirect/1/?d=url%3Dhttp%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DFE_9CzLCbkY">Dream of the 90s</a>')
+    expect(multipart.html_part.body).to include('<a href="http://localhost.domain/redirect/1/?d=url%3Dhttp%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DOyQ6pqPFwTI">Customers only</a>')
   end
 
   it "doesn't replace text part" do

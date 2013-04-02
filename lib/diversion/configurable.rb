@@ -32,7 +32,7 @@ module Diversion
     end
 
     def reset!
-      @host = 'localhost.domain'
+      @host = 'http://localhost.domain'
       @port = 80
       @path = '/redirect/1/'
       @sign_length = 0
