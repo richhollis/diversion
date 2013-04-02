@@ -1,5 +1,10 @@
 # Diversion Ruby Gem
 
+[![Gem Version](https://badge.fury.io/rb/diversion.png)][gem]
+[![Build Status](https://secure.travis-ci.org/richhollis/diversion.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/richhollis/diversion.png?travis)][gemnasium]
+[![Coverage Status](https://coveralls.io/repos/richhollis/diversion/badge.png?branch=master)][coveralls]
+
 [gem]: https://rubygems.org/gems/diversion
 [travis]: http://travis-ci.org/richhollis/diversion
 [gemnasium]: https://gemnasium.com/richhollis/diversion
