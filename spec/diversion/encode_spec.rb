@@ -24,7 +24,7 @@ describe Diversion::Encode do
 
   it "raises when no uris defined" do
     client.encode_uris = []
-    expect { encode_json_html_signed }.to raise_error(Diversion::Error::UriMissingError)
+    expect { encode_json_html_signed }.to raise_error(Diversion::Error::ConfigurationError)
   end
 
 end

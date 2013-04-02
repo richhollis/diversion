@@ -36,6 +36,7 @@ module Diversion
       @port = 80
       @path = '/redirect/1/'
       @sign_length = 0
+      @sign_key = nil
       @encode_uris = ['http','https']
       @url_encoding = Encode::Params
       @url_decoding = Decode::Params
@@ -72,6 +73,10 @@ module Diversion
 
       unless @port.is_a?(Integer) && @port > 0
         raise(Error::ConfigurationError, "Invalid port specified: #{@port} must be an integer and non-zero.")
+      end
+
+      if !@sign_key.nil? && !@sign_key.is_a?(String)
+        raise(Error::ConfigurationError, "Invalid sign_key specified: #{@sign_key} must be a String.")
       end
 
       unless @sign_length.is_a?(Integer) && @sign_length.between?(0, Signing::MAX_SIGN_LENGTH)

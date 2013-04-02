@@ -13,11 +13,13 @@ module Diversion
 
     def encode(html, global_attrs = {}, opts = {})
       opts = options.merge(opts)
+      validate_configuration!
+
       raise Error::UriMissingError if opts[:encode_uris].count == 0
       doc = Nokogiri::HTML.fragment(html)
       doc.search('a').each do |link|
         # ignore any non web uris
-        next unless link[:href].start_with?(*encode_uris)
+        next unless link[:href].start_with?(*opts[:encode_uris].collect{|uri| "#{uri}:"})
 
         # data attributes
         attrs = {}
@@ -42,10 +44,23 @@ module Diversion
 
         # get url for required type
         url = opts[:url_encoding].get_url(attrs, opts)
-        url = url.gsub(/&/, "$myamp;") # as Nokogiri encodes & to &amp; which breaks our urls we gotta hack this
+        url = doc_escape(url)
         link["href"] = url
       end
-      doc.to_html.gsub(/%24myamp;/, "&") # work around Nokogiri escaping of & and replace with intended ampersands
+      # work around Nokogiri escaping of & and replace with intended ampersands
+      doc_unescape(doc.to_html)
+    end
+
+    private
+
+    def doc_escape(str)
+      str.gsub(/&/, "$myamp;")
+    end
+
+    def doc_unescape(str)
+      # 1st gsub - work around Nokogiri escaping of & and replace with intended ampersands
+      # 2nd gsub - address issue with jruby (presume slightly different output from Nokogiri on jruby)
+      str.gsub(/%24myamp;/, "&").gsub(/$myamp;/, "&") 
     end
 
   end
