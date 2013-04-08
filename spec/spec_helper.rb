@@ -1,3 +1,4 @@
+require 'cgi'
 if RUBY_VERSION >= '1.9' # dont include <1.9 otherwise this breaks jruby-18mode
   require 'coveralls'
   require 'simplecov'
