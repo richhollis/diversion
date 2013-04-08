@@ -1,10 +1,10 @@
-require 'simplecov'
-require 'coveralls'
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-if RUBY_VERSION >= '1.9'
+if RUBY_VERSION >= '1.9' # dont include <1.9 otherwise this breaks jruby-18mode
+  require 'coveralls'
+  require 'simplecov'
+    SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
   SimpleCov.start do
     add_group 'Libraries', 'lib'
     add_group 'Spec', 'spec'
