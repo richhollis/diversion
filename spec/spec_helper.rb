@@ -1,4 +1,10 @@
 require 'cgi'
+require 'action_mailer'
+require 'mail'
+
+require "diversion"
+require 'diversion/support/global_shared_context'
+
 if RUBY_VERSION >= '1.9' # dont include <1.9 otherwise this breaks jruby-18mode
   require 'coveralls'
   require 'simplecov'
@@ -11,12 +17,6 @@ if RUBY_VERSION >= '1.9' # dont include <1.9 otherwise this breaks jruby-18mode
     add_group 'Spec', 'spec'
   end
 end
-
-require 'action_mailer'
-require 'mail'
-
-require "diversion"
-require 'diversion/support/global_shared_context'
 
 SIGN_KEY = "abcdefghijklmnopqrstuvwzxy"
 
