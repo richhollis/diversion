@@ -60,7 +60,7 @@ module Diversion
     def doc_unescape(str)
       # 1st gsub - work around Nokogiri escaping of & and replace with intended ampersands
       # 2nd gsub - address issue with jruby (presume slightly different output from Nokogiri on jruby)
-      str.gsub(/%24myamp;/, "&").gsub(/$myamp;/, "&") 
+      str.gsub(/%24myamp;/, "&").gsub(/\$myamp;/, "&")
     end
 
   end
